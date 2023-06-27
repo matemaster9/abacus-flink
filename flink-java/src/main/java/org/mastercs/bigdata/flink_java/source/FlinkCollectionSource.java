@@ -17,7 +17,7 @@ import java.util.List;
  * time: 2023/6/27 9:48
  */
 @Slf4j
-public class CollectionSource {
+public class FlinkCollectionSource {
 
     public static void main(String[] args) {
         fromElementSource();
