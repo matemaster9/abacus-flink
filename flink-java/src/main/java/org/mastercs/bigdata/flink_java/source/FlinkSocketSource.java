@@ -41,7 +41,7 @@ public class FlinkSocketSource {
 
         @Override
         public void flatMap(String sentence, Collector<Tuple2<String, Integer>> out) throws Exception {
-            for (String word: sentence.split(DELIMITER)) {
+            for (String word : sentence.split(DELIMITER)) {
                 out.collect(new Tuple2<>(word, 1));
             }
         }
