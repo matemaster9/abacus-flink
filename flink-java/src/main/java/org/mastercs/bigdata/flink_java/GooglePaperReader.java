@@ -27,8 +27,10 @@ public class GooglePaperReader {
     @SneakyThrows
     public static void collect() {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> dataStreamSource = env.addSource(new PDFSourceFunction());
-        env.execute("collect paper");
+        // DataStreamSource中的元素，来自每次SourceContext#collect收集到的信息
+        DataStreamSource<String> dataStreamSource = env.addSource(PDFSourceFunction.self());
+        dataStreamSource.print();
+        env.execute("print paper");
     }
 
     private static class PDFSourceFunction extends RichSourceFunction<String> {
@@ -54,6 +56,10 @@ public class GooglePaperReader {
         @Override
         public void cancel() {
             // code to cancel
+        }
+
+        public static PDFSourceFunction self() {
+            return new PDFSourceFunction();
         }
     }
 }

@@ -12,6 +12,7 @@ import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
 import org.apache.flink.util.Collector;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.mastercs.bigdata.flink_java.util.PdfBoxUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,15 +31,15 @@ import static org.mastercs.bigdata.flink_java.GooglePaperConstant.*;
 public class GooglePaperAnalyzer {
 
     public static void main(String[] args) {
-        // analyzePaperByUsingJavaStream();
+        analyzePaperByUsingJavaStream();
         analyzePaperByUsingApacheFlink();
     }
 
     @SneakyThrows
     public static void analyzePaperByUsingApacheFlink() {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> dataStreamSource = env.addSource(new PDFSourceFunction());
-        dataStreamSource.print();
+        DataStreamSource<String> dataStreamSource = env.addSource(PDFSourceFunction.self());
+
         env.execute("analyzePaper");
     }
 
@@ -75,7 +76,7 @@ public class GooglePaperAnalyzer {
             }
         }
 
-        return GFSAnalytics.extractWords(textBuilder.toString());
+        return PdfBoxUtils.extractWordsFromText(textBuilder.toString());
     }
 
     private static class PDFSourceFunction extends RichSourceFunction<String> {
@@ -103,12 +104,16 @@ public class GooglePaperAnalyzer {
         public void cancel() {
             // code to cancel
         }
+
+        public static PDFSourceFunction self() {
+            return new PDFSourceFunction();
+        }
     }
 
     private static class TextToWords implements FlatMapFunction<String, Tuple2<String, Integer>> {
 
         @Override
-        public void flatMap(String elem, Collector<Tuple2<String, Integer>> collector) throws Exception {
+        public void flatMap(String text, Collector<Tuple2<String, Integer>> collector) throws Exception {
 
         }
     }

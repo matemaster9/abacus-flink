@@ -3,6 +3,7 @@ package org.mastercs.bigdata.flink_java;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.mastercs.bigdata.flink_java.util.PdfBoxUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,31 +34,11 @@ public class GFSAnalytics {
         try (PDDocument document = PDDocument.load(new File(pdfPath))) {
             PDFTextStripper stripper = new PDFTextStripper();
             String text = stripper.getText(document);
-            return extractWords(text);
+            return PdfBoxUtils.extractWordsFromText(text);
         } catch (IOException e) {
             log.error(e.getMessage());
         }
         return Collections.emptyList();
-    }
-
-    public static List<String> extractWords(String text) {
-        List<String> words = new ArrayList<>();
-        StringBuilder wordBuilder = new StringBuilder();
-
-        for (char c : text.toCharArray()) {
-            if (Character.isLetter(c) || c == '-') {
-                wordBuilder.append(c);
-            } else if (wordBuilder.length() > 0) {
-                words.add(removeHyphens(wordBuilder.toString()));
-                wordBuilder.setLength(0);
-            }
-        }
-
-        if (wordBuilder.length() > 0) {
-            words.add(wordBuilder.toString());
-        }
-
-        return words;
     }
 
     public static void readWordsToConsole(String pdfPath) {
@@ -68,9 +49,5 @@ public class GFSAnalytics {
         } catch (IOException e) {
             log.error(e.getMessage());
         }
-    }
-
-    public static String removeHyphens(String input) {
-        return input.replace("-", "");
     }
 }
