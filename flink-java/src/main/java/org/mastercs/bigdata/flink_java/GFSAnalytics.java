@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * target: 该案例主要利用pdfbox组件，读取flink-java/docs/gfs.pdf文件。并将pdf的内容的英文单词提取出来，输出至控制台
  * author: Syler
  * time: 2023/6/26 15:47
  */

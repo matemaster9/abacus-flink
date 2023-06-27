@@ -35,6 +35,9 @@ public class GooglePaperAnalyzer {
         analyzePaperByUsingApacheFlink();
     }
 
+    /**
+     * 利用flink计算引擎，获取Google三篇大数据论文中单词的出现频率
+     */
     @SneakyThrows
     public static void analyzePaperByUsingApacheFlink() {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -43,6 +46,9 @@ public class GooglePaperAnalyzer {
         env.execute("analyzePaper");
     }
 
+    /**
+     * 利用Java stream流实现单词出现频率的统计
+     */
     public static void analyzePaperByUsingJavaStream() {
         List<String> words = extractWordsFromGooglePaper();
 
@@ -79,6 +85,9 @@ public class GooglePaperAnalyzer {
         return PdfBoxUtils.extractWordsFromText(textBuilder.toString());
     }
 
+    /**
+     * 利用pdfbox解析pdf文档，将读取到的pdf内容收集到flink中
+     */
     private static class PDFSourceFunction extends RichSourceFunction<String> {
 
         @Override
@@ -105,6 +114,11 @@ public class GooglePaperAnalyzer {
             // code to cancel
         }
 
+        /**
+         * 工厂函数
+         *
+         * @return PDFSourceFunction instance
+         */
         public static PDFSourceFunction self() {
             return new PDFSourceFunction();
         }

@@ -8,6 +8,8 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 /**
+ * 验证flink-connector-files连接器，逐行读取内容
+ * <p>
  * author: Syler
  * time: 2023/6/27 11:14
  */

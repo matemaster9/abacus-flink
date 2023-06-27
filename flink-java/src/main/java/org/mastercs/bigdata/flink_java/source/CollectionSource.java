@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 主要验证DataStreamSource的两种创建方式 fromElements 、fromCollection
+ * <p>
  * author: Syler
  * time: 2023/6/27 9:48
  */

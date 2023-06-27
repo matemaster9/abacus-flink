@@ -10,6 +10,8 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
 
 /**
+ * 验证socket创建DataStream
+ * <p>
  * author: Syler
  * time: 2023/6/27 15:13
  */

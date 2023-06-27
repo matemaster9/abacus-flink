@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 使用pdfbox完成相关pdf操作
+ * <p>
  * author: Syler
  * time: 2023/6/27 10:41
  */
@@ -28,6 +30,12 @@ public final class PdfBoxUtils {
         }
     }
 
+    /**
+     * 基于有限状态机提取pdf文件中的英文单词，单词格式：单词，及含有连字符的单词
+     *
+     * @param text 文本
+     * @return words
+     */
     public static List<String> extractWordsFromText(String text) {
         List<String> words = new ArrayList<>();
         StringBuilder wordBuilder = new StringBuilder();

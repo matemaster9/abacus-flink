@@ -14,6 +14,8 @@ import java.io.IOException;
 import static org.mastercs.bigdata.flink_java.GooglePaperConstant.*;
 
 /**
+ * 验证Google读取到flink中的存在形式，及DataStreamSource中的elem
+ * <p>
  * author: Syler
  * time: 2023/6/26 17:16
  */
