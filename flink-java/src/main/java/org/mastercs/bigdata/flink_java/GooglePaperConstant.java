@@ -6,7 +6,7 @@ package org.mastercs.bigdata.flink_java;
  */
 public abstract class GooglePaperConstant {
 
-    public static final String GFS_PDF = "flink-java/src/main/resources/docs/gfs.pdf";
-    public static final String BIGTABLE_PDF = "flink-java/src/main/resources/docs/bigtable.pdf";
-    public static final String MAPREDUCE_PDF = "flink-java/src/main/resources/docs/mapreduce.pdf";
+    public static final String GFS_PDF = "flink-java/docs/gfs.pdf";
+    public static final String BIGTABLE_PDF = "flink-java/docs/bigtable.pdf";
+    public static final String MAPREDUCE_PDF = "flink-java/docs/mapreduce.pdf";
 }

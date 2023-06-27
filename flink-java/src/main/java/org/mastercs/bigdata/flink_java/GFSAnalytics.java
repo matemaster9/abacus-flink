@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class GFSAnalytics {
 
-    private static final String GFS_PDF = "flink-java/src/main/resources/docs/gfs.pdf";
+    private static final String GFS_PDF = "flink-java/docs/gfs.pdf";
 
     public static void main(String[] args) {
         readWordsToConsole(GFS_PDF);

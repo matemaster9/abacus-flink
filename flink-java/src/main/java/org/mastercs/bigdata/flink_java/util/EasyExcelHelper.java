@@ -21,7 +21,7 @@ public class EasyExcelHelper {
 
     public static void main(String[] args) {
         List<ManagedDependencyCoordinate> coordinates =
-                getManagedDependencyCoordinatesFromExcel("flink-java/src/main/resources/docs/springboot托管依赖.xlsx");
+                getManagedDependencyCoordinatesFromExcel("flink-java/docs/springboot托管依赖.xlsx");
         coordinates.forEach(EasyExcelHelper::console);
     }
 

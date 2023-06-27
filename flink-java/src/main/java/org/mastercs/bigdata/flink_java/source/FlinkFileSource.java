@@ -13,7 +13,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  */
 public class FlinkFileSource {
 
-    private static final String AUTO_CONFIG_TXT = "flink-java/src/main/resources/docs/springboot自动配置类.txt";
+    private static final String AUTO_CONFIG_TXT = "flink-java/docs/springboot自动配置类.txt";
     private static final String FILE_SOURCE_NAME = "SpringBootAutoConfigure";
 
     public static void main(String[] args) throws Exception {
