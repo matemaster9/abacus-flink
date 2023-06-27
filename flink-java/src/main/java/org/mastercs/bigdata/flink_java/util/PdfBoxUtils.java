@@ -19,7 +19,7 @@ public final class PdfBoxUtils {
 
     public static List<String> extractWords(String pdfPath) {
         File pdf = new File(pdfPath);
-        try(PDDocument document = PDDocument.load(pdf)) {
+        try (PDDocument document = PDDocument.load(pdf)) {
             PDFTextStripper stripper = new PDFTextStripper();
             String text = stripper.getText(document);
             return extractWordsFromText(text);

@@ -58,7 +58,7 @@ public class GooglePaperAnalyzer {
     }
 
     public static List<String> extractWordsFromGooglePaper() {
-        File[] papers = new File[] {
+        File[] papers = new File[]{
                 new File(GFS_PDF),
                 new File(BIGTABLE_PDF),
                 new File(MAPREDUCE_PDF)
@@ -66,7 +66,7 @@ public class GooglePaperAnalyzer {
 
         StringBuilder textBuilder = new StringBuilder(1024);
         for (File paper : papers) {
-            try(PDDocument document = PDDocument.load(paper)) {
+            try (PDDocument document = PDDocument.load(paper)) {
                 PDFTextStripper stripper = new PDFTextStripper();
                 String text = stripper.getText(document);
                 textBuilder.append(text);
@@ -83,13 +83,13 @@ public class GooglePaperAnalyzer {
 
         @Override
         public void run(SourceContext<String> sourceContext) throws Exception {
-            File[] papers = new File[] {
+            File[] papers = new File[]{
                     new File(GFS_PDF),
                     new File(BIGTABLE_PDF),
                     new File(MAPREDUCE_PDF)
             };
             for (File paper : papers) {
-                try(PDDocument document = PDDocument.load(paper)) {
+                try (PDDocument document = PDDocument.load(paper)) {
                     PDFTextStripper stripper = new PDFTextStripper();
                     String text = stripper.getText(document);
                     sourceContext.collect(text);
