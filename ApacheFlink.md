@@ -5,3 +5,5 @@
 > 2. Java tuple 及 pojo
 > 3. Scala的case class 与 tuple
 
+# flink核心知识
+![img.png](assets/img.png)
