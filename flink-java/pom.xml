@@ -78,5 +78,21 @@
             <version>31.1-jre</version>
         </dependency>
         <!---->
+
+        <!--data faker-->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+        <!---->
+
+        <!--excel-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <!---->
     </dependencies>
 </project>
