@@ -5,11 +5,10 @@ import com.google.common.collect.Multiset;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.functions.FlatMapFunction;
-import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
-import org.apache.flink.util.Collector;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.mastercs.bigdata.flink_java.util.PdfBoxUtils;
@@ -42,8 +41,24 @@ public class GooglePaperAnalyzer {
     public static void analyzePaperByUsingApacheFlink() {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         DataStreamSource<String> dataStreamSource = env.addSource(PDFSourceFunction.self());
-
+        dataStreamSource.flatMap(textToWords())
+                .returns(Types.STRING)
+                .print();
         env.execute("analyzePaper");
+    }
+
+    /**
+     * 创建实例
+     *
+     * @return FlatMapFunction lambda实现
+     */
+    public static FlatMapFunction<String, String> textToWords() {
+        return (text, collector) -> {
+            List<String> words = PdfBoxUtils.extractWordsFromText(text);
+            for (String word : words) {
+                collector.collect(word);
+            }
+        };
     }
 
     /**
@@ -121,14 +136,6 @@ public class GooglePaperAnalyzer {
          */
         public static PDFSourceFunction self() {
             return new PDFSourceFunction();
-        }
-    }
-
-    private static class TextToWords implements FlatMapFunction<String, Tuple2<String, Integer>> {
-
-        @Override
-        public void flatMap(String text, Collector<Tuple2<String, Integer>> collector) throws Exception {
-
         }
     }
 }
