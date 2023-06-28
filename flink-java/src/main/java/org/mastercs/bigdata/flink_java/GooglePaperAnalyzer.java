@@ -41,7 +41,9 @@ public class GooglePaperAnalyzer {
     public static void analyzePaperByUsingApacheFlink() {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         DataStreamSource<String> dataStreamSource = env.addSource(PDFSourceFunction.self());
-        dataStreamSource.flatMap(textToWords())
+        // returns方法存在的意义就是避免泛型擦除导致flink不清楚返回类型，具体查看TypeInformation
+        dataStreamSource
+                .flatMap(textToWords())
                 .returns(Types.STRING)
                 .print();
         env.execute("analyzePaper");
