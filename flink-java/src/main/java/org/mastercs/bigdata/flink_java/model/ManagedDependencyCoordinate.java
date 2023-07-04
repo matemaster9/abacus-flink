@@ -1,6 +1,8 @@
 package org.mastercs.bigdata.flink_java.model;
 
 
+import java.util.StringJoiner;
+
 /**
  * author: Syler
  * time: 2023/6/27 13:26
@@ -44,10 +46,10 @@ public class ManagedDependencyCoordinate {
 
     @Override
     public String toString() {
-        return "ManagedDependencyCoordinate{" +
-                "groupId='" + groupId + '\'' +
-                ", artifactId='" + artifactId + '\'' +
-                ", version='" + version + '\'' +
-                '}';
+        return new StringJoiner(", ", ManagedDependencyCoordinate.class.getSimpleName() + "[", "]")
+                .add("groupId='" + groupId + "'")
+                .add("artifactId='" + artifactId + "'")
+                .add("version='" + version + "'")
+                .toString();
     }
 }

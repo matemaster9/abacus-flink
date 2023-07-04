@@ -1,5 +1,6 @@
 package org.mastercs.bigdata.flink_java.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -14,9 +15,15 @@ import java.util.List;
  * author: Syler
  * time: 2023/6/27 10:41
  */
+@Slf4j
 public final class PdfBoxUtils {
 
     private PdfBoxUtils() {
+    }
+
+    public static void main(String[] args) {
+        List<String> words = extractWords("flink-java/docs/spring-boot-reference.pdf");
+        log.info("文档单词数：{}", words.size());
     }
 
     public static List<String> extractWords(String pdfPath) {
